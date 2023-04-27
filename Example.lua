@@ -1,8 +1,8 @@
-local repo = 'https://raw.githubusercontent.com/skylysoft/UiLib/main/LinoriaLib.lua'
+local repo = 'https://raw.githubusercontent.com/skylysoft/UiLib/main/'
 
-local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
-local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
+local Library = loadstring(game:HttpGet(repo .. 'LinoriaLib.lua'))()
 local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
+local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
 
 local Window = Library:CreateWindow({
     -- Set Center to true if you want the menu to appear in the center
