@@ -60,7 +60,7 @@ LeftGroupBox:AddToggle('MyToggle', {
 -- Calls the passed function when the toggle is updated
 Toggles.MyToggle:OnChanged(function()
     -- here we get our toggle object & then get its value
-    print('MyToggle changed to:', Toggles.MyToggle.Value)
+    print('MyToggle changed to:', Toggles.MyToggle.v)
 end)
 
 -- This should print to the console: "My toggle state changed! New value: false"
@@ -148,8 +148,8 @@ LeftGroupBox:AddSlider('MySlider', {
     Max = 5,
     Rounding = 1,
     Compact = false,
-    Callback = function(Value)
-        print('[cb] MySlider was changed! New value:', Value)
+    Callback = function(v)
+        print('[cb] MySlider was changed! New value:', v)
     end
 })
 
@@ -159,7 +159,7 @@ LeftGroupBox:AddSlider('MySlider', {
 
 local Number = Options.MySlider.Value
 Options.MySlider:OnChanged(function()
-    print('MySlider was changed! New value:', Options.MySlider.Value)
+    print('MySlider was changed! New value:', Options.MySlider.v)
 end)
 
 -- This should print to the console: "MySlider was changed! New value: 3"
@@ -179,12 +179,12 @@ LeftGroupBox:AddInput('MyTextbox', {
     -- MaxLength is also an option which is the max length of the text
 
     Callback = function(Value)
-        print('[cb] Text updated. New text:', Value)
+        print('[cb] Text updated. New text:', v)
     end
 })
 
 Options.MyTextbox:OnChanged(function()
-    print('Text updated. New text:', Options.MyTextbox.Value)
+    print('Text updated. New text:', Options.MyTextbox.v)
 end)
 
 -- Groupbox:AddDropdown
@@ -198,13 +198,13 @@ LeftGroupBox:AddDropdown('MyDropdown', {
     Text = 'A dropdown',
     Tooltip = 'This is a tooltip', -- Information shown when you hover over the textbox
 
-    Callback = function(Value)
-        print('[cb] Dropdown got changed. New value:', Value)
+    Callback = function(v)
+        print('[cb] Dropdown got changed. New value:', v)
     end
 })
 
 Options.MyDropdown:OnChanged(function()
-    print('Dropdown got changed. New value:', Options.MyDropdown.Value)
+    print('Dropdown got changed. New value:', Options.MyDropdown.v)
 end)
 
 Options.MyDropdown:SetValue('This')
@@ -223,16 +223,16 @@ LeftGroupBox:AddDropdown('MyMultiDropdown', {
     Text = 'A dropdown',
     Tooltip = 'This is a tooltip', -- Information shown when you hover over the textbox
 
-    Callback = function(Value)
-        print('[cb] Multi dropdown got changed:', Value)
+    Callback = function(v)
+        print('[cb] Multi dropdown got changed:', v)
     end
 })
 
 Options.MyMultiDropdown:OnChanged(function()
     -- print('Dropdown got changed. New value:', )
     print('Multi dropdown got changed:')
-    for key, value in next, Options.MyMultiDropdown.Value do
-        print(key, value) -- should print something like This, true
+    for key, value in next, Options.MyMultiDropdown.v do
+        print(key, v) -- should print something like This, true
     end
 end)
 
@@ -246,8 +246,8 @@ LeftGroupBox:AddDropdown('MyPlayerDropdown', {
     Text = 'A player dropdown',
     Tooltip = 'This is a tooltip', -- Information shown when you hover over the textbox
 
-    Callback = function(Value)
-        print('[cb] Player dropdown got changed:', Value)
+    Callback = function(v)
+        print('[cb] Player dropdown got changed:', v)
     end
 })
 
@@ -259,13 +259,13 @@ LeftGroupBox:AddDropdown('MyPlayerDropdown', {
 LeftGroupBox:AddLabel('Color'):AddColorPicker('ColorPicker', {
     Default = Color3.new(0, 1, 0), -- Bright green
     Title = 'Some color', -- Optional. Allows you to have a custom color picker title (when you open it)
-    Callback = function(Value)
-        print('[cb] Color changed!', Value)
+    Callback = function(v)
+        print('[cb] Color changed!', v)
     end
 })
 
 Options.ColorPicker:OnChanged(function()
-    print('Color changed!', Options.ColorPicker.Value)
+    print('Color changed!', Options.ColorPicker.v)
 end)
 
 Options.ColorPicker:SetValueRGB(Color3.fromRGB(0, 255, 140))
@@ -287,8 +287,8 @@ LeftGroupBox:AddLabel('Keybind'):AddKeyPicker('KeyPicker', {
     Text = 'Auto lockpick safes', -- Text to display in the keybind menu
     NoUI = false, -- Set to true if you want to hide from the Keybind menu,
 
-    Callback = function(Value)
-        print('[cb] Keybind clicked!', Value)
+    Callback = function(v)
+        print('[cb] Keybind clicked!', v)
     end,
     ChangedCallback = function(New)
         print('[cb] Keybind changed!', New)
@@ -298,7 +298,7 @@ LeftGroupBox:AddLabel('Keybind'):AddKeyPicker('KeyPicker', {
 -- OnClick is only fired when you press the keybind and the mode is Toggle
 -- Otherwise, you will have to use Keybind:GetState()
 Options.KeyPicker:OnClick(function()
-    print('Keybind clicked!', Options.KeyPicker.Value)
+    print('Keybind clicked!', Options.KeyPicker.v)
 end)
 
 task.spawn(function()
