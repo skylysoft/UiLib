@@ -231,9 +231,6 @@ LeftGroupBox:AddDropdown('MyMultiDropdown', {
 Options.MyMultiDropdown:OnChanged(function()
     -- print('Dropdown got changed. New value:', )
     print('Multi dropdown got changed:')
-    for key, value in next, Options.MyMultiDropdown.v do
-        print(key, v) -- should print something like This, true
-    end
 end)
 
 Options.MyMultiDropdown:SetValue({
