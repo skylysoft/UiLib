@@ -237,7 +237,7 @@ local function CircleAnim(GuiObject, EndColour, StartColour)
 end
 
 getgenv().Settings = {
-	Key = Enum.KeyCode.RightControl
+	Key = Enum.KeyCode.Delete
 }
 
 function _G.Window(text,logo)
