@@ -10,7 +10,7 @@ local Mouse = LocalPlayer:GetMouse();
 
 local ProtectGui = protectgui or (syn and syn.protect_gui) or (function() end);
 
-local LOL = Instance.new('LOL');
+local ScreenGui = Instance.new('LOL');
 ProtectGui(LOL);
 
 LOL.ZIndexBehavior = Enum.ZIndexBehavior.Global;
