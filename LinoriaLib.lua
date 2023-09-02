@@ -10,11 +10,11 @@ local Mouse = LocalPlayer:GetMouse();
 
 local ProtectGui = protectgui or (syn and syn.protect_gui) or (function() end);
 
-local ScreenGui = Instance.new('LOL');
-ProtectGui(LOL);
+local ScreenGui = Instance.new('ScreenGui');
+ProtectGui(ScreenGui);
 
-LOL.ZIndexBehavior = Enum.ZIndexBehavior.Global;
-LOL.Parent = CoreGui;
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global;
+ScreenGui.Parent = CoreGui;
 
 local Toggles = {};
 local Options = {};
@@ -42,7 +42,7 @@ local Library = {
     DependencyBoxes = {};
 
     Signals = {};
-    LOL = LOL;
+    ScreenGui = ScreenGui;
 };
 
 local RainbowStep = 0
@@ -183,7 +183,7 @@ function Library:AddToolTip(InfoStr, HoverInstance)
 
         Size = UDim2.fromOffset(X + 5, Y + 4),
         ZIndex = 100,
-        Parent = Library.LOL,
+        Parent = Library.ScreenGui,
 
         Visible = false,
     })
@@ -372,14 +372,14 @@ function Library:Unload()
         Library.OnUnload()
     end
 
-    LOL:Destroy()
+    ScreenGui:Destroy()
 end
 
 function Library:OnUnload(Callback)
     Library.OnUnload = Callback
 end
 
-Library:GiveSignal(LOL.DescendantRemoving:Connect(function(Instance)
+Library:GiveSignal(ScreenGui.DescendantRemoving:Connect(function(Instance)
     if Library.RegistryMap[Instance] then
         Library:RemoveFromRegistry(Instance);
     end;
@@ -434,7 +434,7 @@ do
         });
 
         -- 1/16/23
-        -- Rewrote this to be placed inside the Library LOL
+        -- Rewrote this to be placed inside the Library ScreenGui
         -- There was some issue which caused RelativeOffset to be way off
         -- Thus the color picker would never show
 
@@ -446,7 +446,7 @@ do
             Size = UDim2.fromOffset(230, Info.Transparency and 271 or 253);
             Visible = false;
             ZIndex = 15;
-            Parent = LOL,
+            Parent = ScreenGui,
         });
 
         DisplayFrame:GetPropertyChangedSignal('AbsolutePosition'):Connect(function()
@@ -638,7 +638,7 @@ do
                 ZIndex = 14,
 
                 Visible = false,
-                Parent = LOL
+                Parent = ScreenGui
             })
 
             ContextMenu.Inner = Library:Create('Frame', {
@@ -1021,7 +1021,7 @@ do
             Size = UDim2.new(0, 60, 0, 45 + 2);
             Visible = false;
             ZIndex = 14;
-            Parent = LOL;
+            Parent = ScreenGui;
         });
 
         ToggleLabel:GetPropertyChangedSignal('AbsolutePosition'):Connect(function()
@@ -2621,7 +2621,7 @@ do
         Position = UDim2.new(0, 0, 0, 40);
         Size = UDim2.new(0, 300, 0, 200);
         ZIndex = 100;
-        Parent = LOL;
+        Parent = ScreenGui;
     });
 
     Library:Create('UIListLayout', {
@@ -2637,7 +2637,7 @@ do
         Size = UDim2.new(0, 213, 0, 20);
         ZIndex = 200;
         Visible = false;
-        Parent = LOL;
+        Parent = ScreenGui;
     });
 
     local WatermarkInner = Library:Create('Frame', {
@@ -2702,7 +2702,7 @@ do
         Size = UDim2.new(0, 210, 0, 20);
         Visible = false;
         ZIndex = 100;
-        Parent = LOL;
+        Parent = ScreenGui;
     });
 
     local KeybindInner = Library:Create('Frame', {
@@ -2902,7 +2902,7 @@ function Library:CreateWindow(...)
         Size = Config.Size,
         Visible = false;
         ZIndex = 1;
-        Parent = LOL;
+        Parent = ScreenGui;
     });
 
     Library:MakeDraggable(Outer, 25);
@@ -3433,7 +3433,7 @@ function Library:CreateWindow(...)
         Visible = true;
         Text = '';
         Modal = false;
-        Parent = LOL;
+        Parent = ScreenGui;
     });
 
     function Library.Toggle()
@@ -3447,7 +3447,7 @@ function Library:CreateWindow(...)
         Cursor.Thickness = 1;
         Cursor.Filled = true;
 
-        while Outer.Visible and LOL.Parent do
+        while Outer.Visible and ScreenGui.Parent do
             local mPos = InputService:GetMouseLocation()
 
             Cursor.Color = Library.AccentColor;
